@@ -1,10 +1,7 @@
-class Transporte{
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-	andar(){
-		console.log("andando..");
-	}
-}
-
-var auto = new Transporte;
-
-auto.andar();
+ReactDOM.render(
+  <h1>Hello, other world!</h1>,
+  document.getElementById('root')
+);
