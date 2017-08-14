@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './style.less'
 
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <h1 id="title" >Hello, world!</h1>,
   document.getElementById('root')
 );

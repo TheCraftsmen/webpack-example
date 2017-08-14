@@ -2,6 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractLess = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+});
 
 module.exports = {
     entry: {
@@ -21,6 +26,18 @@ module.exports = {
                     presets: ['es2015', 'react'],
                     compact: false
             }
+        },
+        {
+            test: /\.less$/,
+            use: extractLess.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "less-loader"
+                }],
+                // use style-loader in development
+                fallback: "style-loader"
+            })
         }
     ]
     },
@@ -59,7 +76,8 @@ module.exports = {
         new CleanWebpackPlugin(['build'], {
           verbose: true,
           dry: false,
-        })
+        }),
+        extractLess
     ],
     devtool: 'source-map'
 };
