@@ -38,7 +38,17 @@ module.exports = {
                 // use style-loader in development
                 fallback: "style-loader"
             })
-        }
+        },
+        {
+            enforce: "pre",
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            loader: "eslint-loader",
+            options: {
+              // eslint options (if necessary)
+              failOnWarning: false,
+            }
+          }
     ]
     },
     stats: {
